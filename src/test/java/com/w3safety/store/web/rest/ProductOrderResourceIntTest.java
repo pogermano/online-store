@@ -3,6 +3,7 @@ package com.w3safety.store.web.rest;
 import com.w3safety.store.StoreApp;
 
 import com.w3safety.store.domain.ProductOrder;
+import com.w3safety.store.domain.Customer;
 import com.w3safety.store.repository.ProductOrderRepository;
 import com.w3safety.store.service.ProductOrderService;
 import com.w3safety.store.web.rest.errors.ExceptionTranslator;
@@ -101,6 +102,11 @@ public class ProductOrderResourceIntTest {
             .placedDate(DEFAULT_PLACED_DATE)
             .status(DEFAULT_STATUS)
             .code(DEFAULT_CODE);
+        // Add required entity
+        Customer customer = CustomerResourceIntTest.createEntity(em);
+        em.persist(customer);
+        em.flush();
+        productOrder.setCustomer(customer);
         return productOrder;
     }
 

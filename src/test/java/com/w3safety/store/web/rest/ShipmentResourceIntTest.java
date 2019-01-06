@@ -3,6 +3,7 @@ package com.w3safety.store.web.rest;
 import com.w3safety.store.StoreApp;
 
 import com.w3safety.store.domain.Shipment;
+import com.w3safety.store.domain.Invoice;
 import com.w3safety.store.repository.ShipmentRepository;
 import com.w3safety.store.service.ShipmentService;
 import com.w3safety.store.web.rest.errors.ExceptionTranslator;
@@ -100,6 +101,11 @@ public class ShipmentResourceIntTest {
             .trackingCode(DEFAULT_TRACKING_CODE)
             .date(DEFAULT_DATE)
             .details(DEFAULT_DETAILS);
+        // Add required entity
+        Invoice invoice = InvoiceResourceIntTest.createEntity(em);
+        em.persist(invoice);
+        em.flush();
+        shipment.setInvoice(invoice);
         return shipment;
     }
 

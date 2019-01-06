@@ -11,7 +11,7 @@ describe('OrderItem e2e test', () => {
     let signInPage: SignInPage;
     let orderItemUpdatePage: OrderItemUpdatePage;
     let orderItemComponentsPage: OrderItemComponentsPage;
-    let orderItemDeleteDialog: OrderItemDeleteDialog;
+    /*let orderItemDeleteDialog: OrderItemDeleteDialog;*/
 
     before(async () => {
         await browser.get('/');
@@ -34,7 +34,7 @@ describe('OrderItem e2e test', () => {
         await orderItemUpdatePage.cancel();
     });
 
-    it('should create and save OrderItems', async () => {
+    /* it('should create and save OrderItems', async () => {
         const nbButtonsBeforeCreate = await orderItemComponentsPage.countDeleteButtons();
 
         await orderItemComponentsPage.clickOnCreateButton();
@@ -43,7 +43,7 @@ describe('OrderItem e2e test', () => {
             orderItemUpdatePage.setTotalPriceInput('5'),
             orderItemUpdatePage.statusSelectLastOption(),
             orderItemUpdatePage.productSelectLastOption(),
-            orderItemUpdatePage.orderSelectLastOption()
+            orderItemUpdatePage.orderSelectLastOption(),
         ]);
         expect(await orderItemUpdatePage.getQuantityInput()).to.eq('5');
         expect(await orderItemUpdatePage.getTotalPriceInput()).to.eq('5');
@@ -51,18 +51,19 @@ describe('OrderItem e2e test', () => {
         expect(await orderItemUpdatePage.getSaveButton().isPresent()).to.be.false;
 
         expect(await orderItemComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1);
-    });
+    });*/
 
-    it('should delete last OrderItem', async () => {
+    /* it('should delete last OrderItem', async () => {
         const nbButtonsBeforeDelete = await orderItemComponentsPage.countDeleteButtons();
         await orderItemComponentsPage.clickOnLastDeleteButton();
 
         orderItemDeleteDialog = new OrderItemDeleteDialog();
-        expect(await orderItemDeleteDialog.getDialogTitle()).to.eq('storeApp.orderItem.delete.question');
+        expect(await orderItemDeleteDialog.getDialogTitle())
+            .to.eq('storeApp.orderItem.delete.question');
         await orderItemDeleteDialog.clickOnConfirmButton();
 
         expect(await orderItemComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-    });
+    });*/
 
     after(async () => {
         await navBarPage.autoSignOut();

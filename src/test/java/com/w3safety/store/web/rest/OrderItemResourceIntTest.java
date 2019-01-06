@@ -3,6 +3,8 @@ package com.w3safety.store.web.rest;
 import com.w3safety.store.StoreApp;
 
 import com.w3safety.store.domain.OrderItem;
+import com.w3safety.store.domain.Product;
+import com.w3safety.store.domain.ProductOrder;
 import com.w3safety.store.repository.OrderItemRepository;
 import com.w3safety.store.service.OrderItemService;
 import com.w3safety.store.web.rest.errors.ExceptionTranslator;
@@ -100,6 +102,16 @@ public class OrderItemResourceIntTest {
             .quantity(DEFAULT_QUANTITY)
             .totalPrice(DEFAULT_TOTAL_PRICE)
             .status(DEFAULT_STATUS);
+        // Add required entity
+        Product product = ProductResourceIntTest.createEntity(em);
+        em.persist(product);
+        em.flush();
+        orderItem.setProduct(product);
+        // Add required entity
+        ProductOrder productOrder = ProductOrderResourceIntTest.createEntity(em);
+        em.persist(productOrder);
+        em.flush();
+        orderItem.setOrder(productOrder);
         return orderItem;
     }
 

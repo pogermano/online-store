@@ -11,7 +11,7 @@ describe('Customer e2e test', () => {
     let signInPage: SignInPage;
     let customerUpdatePage: CustomerUpdatePage;
     let customerComponentsPage: CustomerComponentsPage;
-    let customerDeleteDialog: CustomerDeleteDialog;
+    /*let customerDeleteDialog: CustomerDeleteDialog;*/
 
     before(async () => {
         await browser.get('/');
@@ -34,7 +34,7 @@ describe('Customer e2e test', () => {
         await customerUpdatePage.cancel();
     });
 
-    it('should create and save Customers', async () => {
+    /* it('should create and save Customers', async () => {
         const nbButtonsBeforeCreate = await customerComponentsPage.countDeleteButtons();
 
         await customerComponentsPage.clickOnCreateButton();
@@ -48,7 +48,7 @@ describe('Customer e2e test', () => {
             customerUpdatePage.setAddressLine2Input('addressLine2'),
             customerUpdatePage.setCityInput('city'),
             customerUpdatePage.setCountryInput('country'),
-            customerUpdatePage.userSelectLastOption()
+            customerUpdatePage.userSelectLastOption(),
         ]);
         expect(await customerUpdatePage.getFirstNameInput()).to.eq('firstName');
         expect(await customerUpdatePage.getLastNameInput()).to.eq('lastName');
@@ -62,18 +62,19 @@ describe('Customer e2e test', () => {
         expect(await customerUpdatePage.getSaveButton().isPresent()).to.be.false;
 
         expect(await customerComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1);
-    });
+    });*/
 
-    it('should delete last Customer', async () => {
+    /* it('should delete last Customer', async () => {
         const nbButtonsBeforeDelete = await customerComponentsPage.countDeleteButtons();
         await customerComponentsPage.clickOnLastDeleteButton();
 
         customerDeleteDialog = new CustomerDeleteDialog();
-        expect(await customerDeleteDialog.getDialogTitle()).to.eq('storeApp.customer.delete.question');
+        expect(await customerDeleteDialog.getDialogTitle())
+            .to.eq('storeApp.customer.delete.question');
         await customerDeleteDialog.clickOnConfirmButton();
 
         expect(await customerComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-    });
+    });*/
 
     after(async () => {
         await navBarPage.autoSignOut();
