@@ -33,7 +33,7 @@
                 <dt><span jhiTranslate="storeApp.product.productCategory">Product Category</span></dt>
                 <dd>
                     <div *ngIf="product.productCategory">
-                        <a [routerLink]="['/product-category', product.productCategory?.id, 'view']">{{product.productCategory?.id}}</a>
+                        <a [routerLink]="['/product-category', product.productCategory?.id, 'view']">{{product.productCategory?.name}}</a>
                     </div>
                 </dd>
             </dl>
@@ -43,13 +43,12 @@
                     class="btn btn-info">
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
-             <span *jhiHasAnyAuthority="'ROLE_ADMIN'">
-                <button type="button"
-                        [routerLink]="['/product', product.id, 'edit']"
-                        class="btn btn-primary">
-                        <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+
+            <button type="button"
+                    [routerLink]="['/product', product.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
-            </span>
         </div>
     </div>
 </div>

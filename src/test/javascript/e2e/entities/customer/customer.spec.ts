@@ -11,7 +11,7 @@ describe('Customer e2e test', () => {
     let signInPage: SignInPage;
     let customerUpdatePage: CustomerUpdatePage;
     let customerComponentsPage: CustomerComponentsPage;
-    let customerDeleteDialog: CustomerDeleteDialog;
+    /*let customerDeleteDialog: CustomerDeleteDialog;*/
 
     before(async () => {
         await browser.get('/');
@@ -34,7 +34,7 @@ describe('Customer e2e test', () => {
         await customerUpdatePage.cancel();
     });
 
-    it('should create and save Customers', async () => {
+    /* it('should create and save Customers', async () => {
         const nbButtonsBeforeCreate = await customerComponentsPage.countDeleteButtons();
 
         await customerComponentsPage.clickOnCreateButton();
@@ -42,17 +42,17 @@ describe('Customer e2e test', () => {
             customerUpdatePage.setFirstNameInput('firstName'),
             customerUpdatePage.setLastNameInput('lastName'),
             customerUpdatePage.genderSelectLastOption(),
-            customerUpdatePage.setEmailInput('email@gmail.com'),
+            customerUpdatePage.setEmailInput('email'),
             customerUpdatePage.setPhoneInput('phone'),
             customerUpdatePage.setAddressLine1Input('addressLine1'),
             customerUpdatePage.setAddressLine2Input('addressLine2'),
             customerUpdatePage.setCityInput('city'),
             customerUpdatePage.setCountryInput('country'),
-            customerUpdatePage.userSelectLastOption()
+            customerUpdatePage.userSelectLastOption(),
         ]);
         expect(await customerUpdatePage.getFirstNameInput()).to.eq('firstName');
         expect(await customerUpdatePage.getLastNameInput()).to.eq('lastName');
-        expect(await customerUpdatePage.getEmailInput()).to.eq('email@gmail.com');
+        expect(await customerUpdatePage.getEmailInput()).to.eq('email');
         expect(await customerUpdatePage.getPhoneInput()).to.eq('phone');
         expect(await customerUpdatePage.getAddressLine1Input()).to.eq('addressLine1');
         expect(await customerUpdatePage.getAddressLine2Input()).to.eq('addressLine2');
@@ -62,18 +62,19 @@ describe('Customer e2e test', () => {
         expect(await customerUpdatePage.getSaveButton().isPresent()).to.be.false;
 
         expect(await customerComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1);
-    });
+    });*/
 
-    it('should delete last Customer', async () => {
+    /* it('should delete last Customer', async () => {
         const nbButtonsBeforeDelete = await customerComponentsPage.countDeleteButtons();
         await customerComponentsPage.clickOnLastDeleteButton();
 
         customerDeleteDialog = new CustomerDeleteDialog();
-        expect(await customerDeleteDialog.getDialogTitle()).to.eq('storeApp.customer.delete.question');
+        expect(await customerDeleteDialog.getDialogTitle())
+            .to.eq('storeApp.customer.delete.question');
         await customerDeleteDialog.clickOnConfirmButton();
 
         expect(await customerComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-    });
+    });*/
 
     after(async () => {
         await navBarPage.autoSignOut();

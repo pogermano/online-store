@@ -2,7 +2,6 @@ import { element, by, ElementFinder } from 'protractor';
 
 export class InvoiceComponentsPage {
     createButton = element(by.id('jh-create-entity'));
-
     deleteButtons = element.all(by.css('jhi-invoice div table .btn-danger'));
     title = element.all(by.css('jhi-invoice div h2#page-heading span')).first();
 

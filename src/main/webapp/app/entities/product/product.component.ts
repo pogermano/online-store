@@ -29,7 +29,6 @@ export class ProductComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
-    filter: string;
 
     constructor(
         protected productService: ProductService,
