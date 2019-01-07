@@ -31,7 +31,9 @@
             </div>
         </div>
             <div class="list-group">
-         <a
+        <span *ngIf="AuthCheck(['ROLE_ADMIN']); then thenBlock else elseBlock"    ><h1>TESTE</h1></span>
+        <ng-template #thenBlock>
+                <a
                 class="list-group-item   list-group-item-action  flex-column
                 align-items-start"
                 *ngFor="let product of (products) | pureFilter: filter:'name'; trackBy: trackId">
@@ -61,7 +63,12 @@
                                     </span>
                                 </small>
                                 <div *jhiHasAnyAuthority="'ROLE_ADMIN'">
-
+                                        <button type="submit"
+                                        [routerLink]="['/product', product.id, 'view']"
+                                                    class="btn btn-info btn-sm">
+                                                    <span class="fa fa-pensil"></span>
+                                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                        </button>
                                                 <button type="submit"
                                                 [routerLink]="['/product', product.id, 'edit']"
                                                             class="btn btn-primary btn-sm">
@@ -81,6 +88,50 @@
                                  </div>
                              </div>
                         </a>
+        </ng-template>
+
+        <ng-template  #elseBlock>
+                <a [routerLink]="['/product', product.id, 'view']"
+                class="list-group-item   list-group-item-action  flex-column
+                align-items-start"
+                *ngFor="let product of (products) | pureFilter: filter:'name'; trackBy: trackId">
+                <div class="row">
+                    <div   class="col-2 col-xs-12 justify-content-center">
+                        <img  [src]="'data:' + product.imageContentType +
+                        ';base64,' + product.image"
+                        style="max-height: 150px;" alt="product image" />
+                    </div>
+                    <div class="col col-xs-12">
+                            <div class="d-flex w-100 justify-content-between">
+                                    <h5  class="mb-1">{{product.name}}</h5>
+                                    <small *ngIf="product?.productCategory">
+                                       <strong> Category: </strong>
+                                        <a [routerLink]="['../product-category', product.productCategory?.id, 'view']">
+                                            {{product.productCategory?.name}}
+                                        </a>
+                                    </small>
+                                </div>
+                                <small class="mb-1">{{product.description}}</small>
+                                <p  class="mb-1">Price: {{product.price}}</p>
+                                <small>
+                                    Size:
+                                    <span jhiTranslate="{{'storeApp.Size.' +
+                                    product.size}}">
+                                    {{product.size}}
+                                    </span>
+                                </small>
+                                 </div>
+                             </div>
+                        </a>
+        </ng-template>
+
+
+
+
+
+
+
+
         </div>
     </div>
 

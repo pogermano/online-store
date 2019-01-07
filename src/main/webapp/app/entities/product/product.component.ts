@@ -1,3 +1,4 @@
+import { HasAnyAuthorityDirective } from './../../shared/auth/has-any-authority.directive';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -99,6 +100,7 @@ export class ProductComponent implements OnInit, OnDestroy {
             this.currentAccount = account;
         });
         this.registerChangeInProducts();
+        console.log('@@@@@@@@@@@@@@@@@' + this.accountService.hasAnyAuthority(['ROLE_ADMIN']));
     }
 
     ngOnDestroy() {
@@ -127,6 +129,10 @@ export class ProductComponent implements OnInit, OnDestroy {
             result.push('id');
         }
         return result;
+    }
+
+    AuthCheck(authority: string[]): boolean {
+        return this.accountService.hasAnyAuthority(authority);
     }
 
     protected paginateProducts(data: IProduct[], headers: HttpHeaders) {
