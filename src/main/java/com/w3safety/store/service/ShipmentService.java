@@ -2,6 +2,9 @@ package com.w3safety.store.service;
 
 import com.w3safety.store.domain.Shipment;
 import com.w3safety.store.repository.ShipmentRepository;
+import com.w3safety.store.security.AuthoritiesConstants;
+import com.w3safety.store.security.SecurityUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,10 +47,19 @@ public class ShipmentService {
      * @param pageable the pagination information
      * @return the list of entities
      */
+    // modificado 09/01/19
     @Transactional(readOnly = true)
     public Page<Shipment> findAll(Pageable pageable) {
         log.debug("Request to get all Shipments");
-        return shipmentRepository.findAll(pageable);
+        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+            return shipmentRepository.findAll(pageable);
+       } else {
+           return  shipmentRepository.findAllByInvoiceOrderCustomerUserLogin(
+               SecurityUtils.getCurrentUserLogin().get(),
+               pageable
+           );
+       }
+
     }
 
 

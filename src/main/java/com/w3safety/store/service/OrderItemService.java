@@ -2,6 +2,9 @@ package com.w3safety.store.service;
 
 import com.w3safety.store.domain.OrderItem;
 import com.w3safety.store.repository.OrderItemRepository;
+import com.w3safety.store.security.AuthoritiesConstants;
+import com.w3safety.store.security.SecurityUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,10 +47,20 @@ public class OrderItemService {
      * @param pageable the pagination information
      * @return the list of entities
      */
+     // modificado 09/01/19
+     // original   return orderItemRepository.findAll(pageable);
     @Transactional(readOnly = true)
     public Page<OrderItem> findAll(Pageable pageable) {
         log.debug("Request to get all OrderItems");
-        return orderItemRepository.findAll(pageable);
+
+        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+             return orderItemRepository.findAll(pageable);
+        } else {
+            return  orderItemRepository.findAllByOrderCustomerUserLogin(
+                SecurityUtils.getCurrentUserLogin().get(),
+                pageable
+            );
+        }
     }
 
 

@@ -2,6 +2,9 @@ package com.w3safety.store.service;
 
 import com.w3safety.store.domain.Invoice;
 import com.w3safety.store.repository.InvoiceRepository;
+import com.w3safety.store.security.AuthoritiesConstants;
+import com.w3safety.store.security.SecurityUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,10 +47,18 @@ public class InvoiceService {
      * @param pageable the pagination information
      * @return the list of entities
      */
+    // modificado 09/01/19
     @Transactional(readOnly = true)
     public Page<Invoice> findAll(Pageable pageable) {
         log.debug("Request to get all Invoices");
-        return invoiceRepository.findAll(pageable);
+        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+            return invoiceRepository.findAll(pageable);
+       } else {
+           return  invoiceRepository.findAllByOrderCustomerUserLogin(
+               SecurityUtils.getCurrentUserLogin().get(),
+               pageable
+           );
+       }
     }
 
 
