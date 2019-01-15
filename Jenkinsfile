@@ -29,13 +29,10 @@ node {
     }
 */
 
-    stage('Prepare') {
-        sh "npm install -g yarn"
-        sh "yarn install"
-    }
 
     stage('frontend tests') {
         try {
+            sh "npm install -g yarn"
             sh " yarn test"
         } catch(err) {
             throw err
