@@ -30,11 +30,11 @@ node {
 */
     stage('frontend tests') {
         try {
-            sh "./gradlew yarn_test -PnodeInstall --no-daemon"
+            sh " yarn test"
         } catch(err) {
             throw err
         } finally {
-            junit '**/build/test-results/karma/TESTS-*.xml'
+            junit '**/build/test-results/jest/TESTS-*.xml'
         }
     }
 
