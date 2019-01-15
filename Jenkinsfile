@@ -32,8 +32,8 @@ node {
 
     stage('frontend tests') {
         try {
-            sh "yarn global bin"
-            sh " yarn --version"
+            sh"./gradlew yarn_test -PnodeInstall --no-daemon"
+
         } catch(err) {
             throw err
         } finally {
