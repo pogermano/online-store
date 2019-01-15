@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 node {
- /*   stage('checkout') {
+ stage('checkout') {
         checkout scm
     }
 
@@ -17,7 +17,7 @@ node {
     stage('npm install') {
         sh "./gradlew npm_install -PnodeInstall --no-daemon"
     }
-
+/*
     stage('backend tests') {
         try {
             sh "./gradlew test -PnodeInstall --no-daemon"
