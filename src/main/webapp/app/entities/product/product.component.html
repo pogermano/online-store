@@ -30,7 +30,7 @@
             </div>
             </div>
         </div>
-            <div class="list-group">
+    <div class="list-group">
         <span *ngIf="AuthCheck(['ROLE_ADMIN']); then thenBlock else elseBlock"    ><h1>TESTE</h1></span>
         <ng-template #thenBlock>
                 <a
@@ -43,7 +43,7 @@
                         ';base64,' + product.image"
                         style="max-height: 150px;" alt="product image" />
                     </div>
-                    <div class="col col-xs-12">
+                    <div id="infoCard"  class="col col-xs-12">
                             <div class="d-flex w-100 justify-content-between">
                                     <h5  class="mb-1">{{product.name}}</h5>
                                     <small *ngIf="product?.productCategory">
@@ -75,11 +75,11 @@
                                                             <span class="fa fa-pensil"></span>
                                                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                                                 </button>
-                                                <button type="submit"
+                                                <button  type="submit"
                                                         [routerLink]="['/', { outlets: { popup: 'product/'+ product.id + '/delete'} }]"
                                                         replaceUrl="true"
                                                         queryParamsHandling="merge"
-                                                        class="btn btn-danger btn-sm">
+                                                        class="btn btn-danger btn-sm botao">
                                                         <span class="fa fa-remove"></span>
                                                     <span class="d-none d-md-inline"
                                                           jhiTranslate="entity.action.delete">Delete</span>

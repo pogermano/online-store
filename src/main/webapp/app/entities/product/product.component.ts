@@ -100,7 +100,6 @@ export class ProductComponent implements OnInit, OnDestroy {
             this.currentAccount = account;
         });
         this.registerChangeInProducts();
-        console.log('@@@@@@@@@@@@@@@@@' + this.accountService.hasAnyAuthority(['ROLE_ADMIN']));
     }
 
     ngOnDestroy() {

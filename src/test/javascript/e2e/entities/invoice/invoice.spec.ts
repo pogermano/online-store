@@ -11,7 +11,7 @@ describe('Invoice e2e test', () => {
     let signInPage: SignInPage;
     let invoiceUpdatePage: InvoiceUpdatePage;
     let invoiceComponentsPage: InvoiceComponentsPage;
-    /*let invoiceDeleteDialog: InvoiceDeleteDialog;*/
+    //  let invoiceDeleteDialog: InvoiceDeleteDialog;
 
     before(async () => {
         await browser.get('/');
@@ -34,7 +34,7 @@ describe('Invoice e2e test', () => {
         await invoiceUpdatePage.cancel();
     });
 
-    /* it('should create and save Invoices', async () => {
+    /*      it('should create and save Invoices', async () => {
         const nbButtonsBeforeCreate = await invoiceComponentsPage.countDeleteButtons();
 
         await invoiceComponentsPage.clickOnCreateButton();
@@ -56,10 +56,12 @@ describe('Invoice e2e test', () => {
         await invoiceUpdatePage.save();
         expect(await invoiceUpdatePage.getSaveButton().isPresent()).to.be.false;
 
-        expect(await invoiceComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1);
-    });*/
+    //    expect(await invoiceComponentsPage.getTable().isPresent()).to.be.true;
 
-    /* it('should delete last Invoice', async () => {
+        expect(await invoiceComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1);
+    }); */
+
+    /*     it('should delete last Invoice', async () => {
         const nbButtonsBeforeDelete = await invoiceComponentsPage.countDeleteButtons();
         await invoiceComponentsPage.clickOnLastDeleteButton();
 
@@ -68,8 +70,10 @@ describe('Invoice e2e test', () => {
             .to.eq('storeApp.invoice.delete.question');
         await invoiceDeleteDialog.clickOnConfirmButton();
 
+     //   expect(await invoiceComponentsPage.getTable().isPresent()).to.be.false;
+
         expect(await invoiceComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-    });*/
+    }); */
 
     after(async () => {
         await navBarPage.autoSignOut();

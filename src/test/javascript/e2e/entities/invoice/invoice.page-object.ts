@@ -6,6 +6,15 @@ export class InvoiceComponentsPage {
     deleteButtons = element.all(by.css('jhi-invoice div table .btn-danger'));
     title = element.all(by.css('jhi-invoice div h2#page-heading span')).first();
 
+    /*
+    table = element.all(by.css('.table-responsive tbody tr'));
+    getTable() {
+        return this.table;
+    }
+    deleteFirstItem(){
+        this.table.first().element(by.css('button.btn-danger')).click();
+    } */
+
     async clickOnCreateButton() {
         await this.createButton.click();
     }
