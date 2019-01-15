@@ -28,6 +28,12 @@ node {
         }
     }
 */
+
+    stage('Prepare') {
+        sh "npm install -g yarn"
+        sh "yarn install"
+    }
+
     stage('frontend tests') {
         try {
             sh " yarn test"
