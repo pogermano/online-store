@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 node {
- stage('checkout') {
+    stage('checkout') {
         checkout scm
     }
 
@@ -24,27 +24,17 @@ node {
         } catch(err) {
             throw err
         } finally {
-          //  junit '** /build/** /TEST-*.xml'
+            junit '** /build/** /TEST-*.xml'
         }
     }
 */
- /*    stage('frontend tests') {
+    stage('frontend tests') {
         try {
-            sh "./gradlew npm_run_test-ci -PnodeInstall --no-daemon"
+            sh "./gradlew npm_run_test -PnodeInstall --no-daemon"
         } catch(err) {
             throw err
         } finally {
-            junit '** /build/test-results/jest/TESTS-*.xml'
-        }
-    } */
-
-   stage('frontend tests') {
-        try {
-            sh "./gradlew yarn_test -PnodeInstall --no-daemon"
-        } catch(err) {
-            throw err
-        } finally {
-            junit '** /build/test-results/jest/TESTS-*.xml'
+            junit '**/build/test-results/jest/TESTS-*.xml'
         }
     }
 
