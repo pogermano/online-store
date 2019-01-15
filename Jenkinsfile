@@ -32,8 +32,8 @@ node {
 
     stage('frontend tests') {
         try {
-            sh "npm install -g yarn"
-            sh " yarn test"
+            sh "yarn global bin"
+            sh " yarn --version"
         } catch(err) {
             throw err
         } finally {
