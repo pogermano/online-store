@@ -6,7 +6,7 @@ node {
   stage('init') {
        sh 'echo $(whoami)'
     sh 'node -v'
-     sh 'where node'
+     sh 'where yarn'
     }
 
 
