@@ -6,10 +6,8 @@ node {
   stage('init') {
        sh 'echo $(whoami)'
     sh 'node -v'
-     sh 'where yarn'
-    def yarnHome = 'C:\Program Files (x86)\Jenkins\workspace\online-store\node_modules\yarn\bin'
-    env.PATH="${env.PATH}:${yarnHome}/bin"
-    sh 'yarn -v'
+
+echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
     }
 
 
