@@ -6,6 +6,10 @@ node {
     sh '$YARN --version'
   }
 
+   stage('init') {
+      sh '$YARN --version'
+       sh '$YARN test'
+    }
     stage('checkout') {
         checkout scm
     }
@@ -22,17 +26,17 @@ node {
     stage('npm install') {
         sh "./gradlew npm_install -PnodeInstall --no-daemon"
     }
-
+/*
     stage('backend tests') {
         try {
             sh "./gradlew test -PnodeInstall --no-daemon"
         } catch(err) {
             throw err
         } finally {
-            junit '**/build/**/TEST-*.xml'
+            junit '** /build/** /TEST-*.xml'
         }
     }
-
+*/
     stage('frontend tests') {
         try {
             sh "./gradlew npm_run_test -PnodeInstall --no-daemon"
