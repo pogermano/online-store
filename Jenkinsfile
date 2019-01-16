@@ -32,7 +32,7 @@ node {
 
     stage('frontend tests') {
         try {
-            sh"./gradlew yarn_test --no-daemon"
+            sh"./gradlew npm_test --no-daemon"
 
         } catch(err) {
             throw err
