@@ -6,11 +6,10 @@ node {
   stage('init') {
        sh 'echo $(whoami)'
     sh 'node -v'
+     sh 'echo ${env.PATH}''
     }
 
-  withEnv(["PATH+NODE=${tool name: 'node-10.14.1']) {
-     sh "${nodeHome}/bin/node -v"
-  }
+
 
 
     stage('checkout') {
