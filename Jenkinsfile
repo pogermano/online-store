@@ -2,16 +2,6 @@
 
 node {
 
-  withEnv(['YARN=/c/temp/ebookJHipster/e-commerce-app/online-store/node_modules/yarn/bin/yarn']) {
-    sh '$YARN --version'
-
-
-        stage('init') {
-
-            sh '$YARN test'
-            }
-
-     }
     stage('checkout') {
         checkout scm
     }
@@ -28,7 +18,7 @@ node {
     stage('npm install') {
         sh "./gradlew npm_install -PnodeInstall --no-daemon"
     }
-/*
+
     stage('backend tests') {
         try {
             sh "./gradlew test -PnodeInstall --no-daemon"
@@ -38,7 +28,7 @@ node {
             junit '** /build/** /TEST-*.xml'
         }
     }
-*/
+
     stage('frontend tests') {
         try {
             sh "./gradlew npm_run_test -PnodeInstall --no-daemon"
@@ -54,6 +44,16 @@ node {
         archiveArtifacts artifacts: '**/build/libs/*.war', fingerprint: true
     }
 
+  withEnv(['YARN=/c/temp/ebookJHipster/e-commerce-app/online-store/node_modules/yarn/bin/yarn']) {
+    sh '$YARN --version'
+
+
+        stage('finit') {
+
+            sh '$YARN test'
+            }
+
+     }
     stage('deployment') {
         sh "./gradlew deployHeroku --no-daemon"
     }
