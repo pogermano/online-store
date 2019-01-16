@@ -6,7 +6,7 @@ node {
   stage('init') {
        sh 'echo $(whoami)'
     sh 'node -v'
-     sh 'echo ${env.PATH}''
+     sh 'echo ${env.PATH}'
     }
 
 
