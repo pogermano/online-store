@@ -2,16 +2,9 @@
 
 node {
 
-
-  stage('init') {
-       sh 'echo $(whoami)'
-    sh 'node -v'
-
-echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
-    }
-
-
-
+  withEnv(['YARN_HOME=C:\Program Files (x86)\Jenkins\workspace\online-store\node_modules\yarn\bin']) {
+    sh '$YARN_HOME/yarn -version'
+  }
 
     stage('checkout') {
         checkout scm
@@ -29,24 +22,20 @@ echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
     stage('npm install') {
         sh "./gradlew npm_install -PnodeInstall --no-daemon"
     }
-/*
+
     stage('backend tests') {
         try {
             sh "./gradlew test -PnodeInstall --no-daemon"
         } catch(err) {
             throw err
         } finally {
-            junit '** /build/** /TEST-*.xml'
+            junit '**/build/**/TEST-*.xml'
         }
     }
-*/
-
 
     stage('frontend tests') {
         try {
-            sh "npm install yarn  -g"
-            sh "yarn --version"
-
+            sh "./gradlew npm_run_test -PnodeInstall --no-daemon"
         } catch(err) {
             throw err
         } finally {
