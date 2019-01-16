@@ -4,12 +4,14 @@ node {
 
   withEnv(['YARN=/c/temp/ebookJHipster/e-commerce-app/online-store/node_modules/yarn/bin/yarn']) {
     sh '$YARN --version'
-  }
 
-   stage('init') {
-      sh '$YARN --version'
-       sh '$YARN test'
-    }
+
+        stage('init') {
+
+            sh '$YARN test'
+            }
+
+     }
     stage('checkout') {
         checkout scm
     }
