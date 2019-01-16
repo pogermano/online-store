@@ -2,8 +2,8 @@
 
 node {
 
-  withEnv(['YARN_HOME=C:\Program Files (x86)\Jenkins\workspace\online-store\node_modules\yarn\bin\']) {
-    sh '$YARN_HOME yarn -version'
+  withEnv(['YARN_HOME=/c/Program Files (x86)/Jenkins/workspace/online-store/node_modules/yarn/bin/']) {
+    sh '$YARN_HOME yarn --version'
   }
 
     stage('checkout') {
