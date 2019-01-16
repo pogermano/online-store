@@ -2,7 +2,7 @@
 
 node {
 
-  withEnv(['YARN_HOME=/c/Program Files (x86)/Jenkins/workspace/online-store/node_modules/yarn/bin/']) {
+  withEnv(['YARN_HOME=/c/temp/ebookJHipster/e-commerce-app/online-store/node_modules/yarn/bin/']) {
     sh '$YARN_HOME yarn --version'
   }
 
