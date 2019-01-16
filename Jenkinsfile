@@ -8,6 +8,11 @@ node {
     sh 'node -v'
     }
 
+  withEnv(["PATH+NODE=${tool name: 'node-10.14.1', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'}/bin"]) {
+    sh 'node -v'
+  }
+
+
     stage('checkout') {
         checkout scm
     }
