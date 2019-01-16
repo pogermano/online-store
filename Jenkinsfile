@@ -1,6 +1,13 @@
 #!/usr/bin/env groovy
 
 node {
+
+
+  stage('init') {
+       sh 'echo $(whoami)'
+    sh 'node -v'
+    }
+
     stage('checkout') {
         checkout scm
     }
