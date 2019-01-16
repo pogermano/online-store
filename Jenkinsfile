@@ -32,8 +32,8 @@ node {
 
     stage('frontend tests') {
         try {
-            sh "./gradlew install_yarn --no-daemon"
-            sh "yarn -version"
+            sh "npm install yarn  -g"
+            sh "yarn --version"
 
         } catch(err) {
             throw err
